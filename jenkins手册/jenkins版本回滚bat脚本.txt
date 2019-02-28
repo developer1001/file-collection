@@ -1,0 +1,11 @@
+if "%operation%" == "deploy" ( 
+exit 0   
+)else if "%operation%" == "rollback" (	
+rmdir /s/q %WORKSPACE%\target
+mkdir %WORKSPACE%\target
+xcopy %JENKINS_HOME%\jobs\%JOB_NAME%\builds\%version%\archive\target %WORKSPACE%\target /s /e /y
+exit 0
+)
+else (
+exit 0
+)

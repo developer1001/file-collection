@@ -1,0 +1,15 @@
+case $operation in
+	deploy)
+	echo "deploy:$operation"
+	mvn clean test package
+	;;
+	rollback)
+	echo "rollback:$operation"
+	echo "version:$version"
+	rm -rf target
+	cp -R ${JENKINS_HOME}/jobs/sale-web-produce/builds/${version}/archive/target .pwd && ls
+	;;
+    *)
+  exit
+	;;
+esac
